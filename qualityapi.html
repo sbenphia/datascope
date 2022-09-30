@@ -1,0 +1,51 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        Test Quality API (example npi = 1003258930):
+        <br>
+        <input type="text" id="inputnpi"></input>
+        <br>
+        <button onclick="renderData()">Pro Quality API</button>
+        <br>
+    <textarea id="proqualityapiresults"></textarea>    
+        <br>
+        <br>
+<script>
+
+// get api information for one npi and return data
+async function getqualitydata(npi) {
+    
+    let url = 'https://data.cms.gov/provider-data/api/1/datastore/sql?query=%5BSELECT%20%2A%20FROM%2008fb9982-9b2a-5fd7-93a3-1ac028c5d46b%5D%5BWHERE%20NPI%20%3D%20%22' + npi + '%22%5D';
+    try {
+        let res = await fetch(url);
+        return await res.json();
+    } catch (error) {
+        console.log(error);
+    }
+
+} // end pro quality api access
+
+// recieve input npi and put data in results
+async function renderData() {
+    var inputnpi = document.getElementById('inputnpi').value
+    let qualityData = await getqualitydata(inputnpi);
+    let html = '';
+    console.log(qualityData)
+    
+        let htmlSegment = `<div>
+                            <h2>${qualityData[0].frst_nm}</h2>
+                           </div>`;
+
+        html += htmlSegment;
+
+    
+
+    document.getElementById('proqualityapiresults').value = html;
+}
+
+</script>
+
+</body>
+</html>
