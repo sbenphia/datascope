@@ -9,7 +9,7 @@
         <br>
         <button onclick="renderData()">Pro Quality API</button>
         <br>
-    <textarea id="proqualityapiresults"></textarea>    
+    <div id="proqualityapiresults"></div>    
         <br>
         <br>
 <script>
@@ -35,14 +35,18 @@ async function renderData() {
     console.log(qualityData)
     
         let htmlSegment = `<div>
-                            <h2>${qualityData[0].frst_nm}</h2>
+                            Provider NPI: ${qualityData[0].npi}
+                            <br>
+                            Provider Name: ${qualityData[0].frst_nm} ${qualityData[0].lst_nm}
+                            <br>
+                            Quality Score: ${qualityData[0].final_MIPS_score}
                            </div>`;
 
         html += htmlSegment;
 
     
 
-    document.getElementById('proqualityapiresults').value = html;
+    document.getElementById('proqualityapiresults').innerHTML = html;
 }
 
 </script>
