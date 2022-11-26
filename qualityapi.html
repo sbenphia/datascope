@@ -25,7 +25,8 @@ async function getqualitydata(npi) {
             crossorigin: true,  
             mode: 'no-cors',     
             });
-        return await res.json();
+            console.log(res.json())
+        //return await res.json();
     } catch (error) {
         console.log(error);
     }
