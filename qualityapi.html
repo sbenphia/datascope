@@ -27,7 +27,11 @@ async function renderData() {
 
                 // This function just returns a promise
                     function getData(url) {
-                    return fetch(url)
+                    return fetch(url, {  
+                        method: 'GET',  
+                        crossorigin: true,  
+                        mode: 'no-cors'     
+                        })
                         .then(response=>{
                         return response.json()
                         })
