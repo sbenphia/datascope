@@ -35,9 +35,6 @@ async function renderData() {
                         .then(response=>{
                         return response.text()
                         })
-                        .then((data) => {
-                        resolve(data ? JSON.parse(data) : {})
-                        })
                         .then(data =>{
                         const responsedata = data // not doing anything with data here
                         // example manipulate data - const timeT = Math.round(data['routes'][0]['summary']['travelTimeInSeconds']/60); 
