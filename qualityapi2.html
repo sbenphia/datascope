@@ -26,14 +26,12 @@ async function renderData() {
         var npiqualitydata
 
                 // This function just returns a promise
-                    function getData(url) {
-                    return fetch(url, {  
-                        method: 'GET',  
-                        crossorigin: true,  
-                        mode: 'no-cors'
+                function getData(url) {
+                    return fetch(url)
+                        .then(response=>{
+                        return response.json()
                         })
                         .then(data =>{
-                            console.log(data)
                         const responsedata = data // not doing anything with data here
                         // example manipulate data - const timeT = Math.round(data['routes'][0]['summary']['travelTimeInSeconds']/60); 
                         return Promise.resolve(responsedata);
