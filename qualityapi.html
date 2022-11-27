@@ -34,10 +34,18 @@ async function renderData() {
                         headers: {
                             'Content-Type': 'application/json'
                             // 'Content-Type': 'application/x-www-form-urlencoded',
-                            }
+                            },
+                            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                            body: JSON.stringify(data) // body data type must match "Content-Type" header     
                         })
                         .then(response=>{
-                        return response.json()
+                        return response.text()
+                        })
+                        .then((data) => {
+                        resolve(data ? JSON.parse(data) : {})
+                        })
+                        .catch((error) => {
+                        reject(error)
                         })
                         .then(data =>{
                         const responsedata = data // not doing anything with data here
